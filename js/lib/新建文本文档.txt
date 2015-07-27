@@ -1,0 +1,7 @@
+fancybox            弹出框插件
+bgstretcher         变换背景插件{index用}
+aw-showcase         幻灯片展示效果
+jquery.caroufredsel 图片轮播
+jquery.jscrollpane  美化滚动条
+jquery.mousewheel   鼠标滚轮插件
+jquery.orbit        幻灯片插件
