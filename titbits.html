@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <head>
-	<link rel="stylesheet" type="text/css" href="css/adv-video.css" />
+	<link rel="stylesheet" type="text/css" href="css/titbits.css" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>海林集团 官方网站</title>
 	<script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.aw-showcase.js"></script>
-	<script type="text/javascript" src="js/lib/jquery.carouFredSel-6.1.0.js"></script>
-	<script src="js/lib/jquery.tabSlideOut.v1.31.js"></script>
 	<link rel="stylesheet" href="css/orbit-1.2.31.css">
 	<script type="text/javascript" src="js/lib/jquery.orbit-1.2.3.min.js"></script>
 	<script type='text/javascript' src='js/lib/jwplayer6.js'></script>
@@ -23,7 +21,7 @@
 		   div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);zoom: 1; }
 	  </style>
 	  <![endif]-->
-	<script src="data/video-data.js"></script>
+	<script src="data/titbits-data.js"></script>
 	<script type="text/javascript">
 	  	$(function(){
 	  		$(window).resize(function(){
@@ -51,25 +49,25 @@
 	  			mousetrace:       false,
 	  			pauseonover:      true,
 	  			stoponclick:      true,
-	  			transition:       'hslide',
+	  			transition:       'vslide',
 	  			transition_delay:   0,
 	  			transition_speed:   500,
 	  			show_caption:     'onload',
 	  			thumbnails:       true,
 	  			thumbnails_position:  'outside-last',
-	  			thumbnails_direction: 'horizontal',
-	  			thumbnails_slidex:    1,
+	  			thumbnails_direction: 'vertical',
+	  			thumbnails_slidex:    0,
 	  			dynamic_height:     false,
 	  			speed_change:     false,
 	  			viewline:       false,
 	  			custom_function:    function() {
 	  				$('.scroll-pane').jScrollPane();
 
-	  				var slideCount = videoData.length;
+	  				var slideCount = titbitData.length;
 	  				for(var i = 0; i < slideCount ; i++){
-	  					$('#'+videoData[i]['orbit']['id']).orbit();
-	  					$('#'+videoData[i]['video']['id']).click(function(){});
-	  					$("a#"+videoData[i]['video']['id']).fancybox({
+	  					$('#'+titbitData[i]['orbit']['id']).orbit();
+	  					$('#'+titbitData[i]['video']['id']).click(function(){});
+	  					$("a#"+titbitData[i]['video']['id']).fancybox({
 		  					'content':'<div id=\"video\" data-index=\"'+i+'\"></div>',
 		  					'hideOnContentClick': false,
 		  					'scrolling': false,
@@ -90,7 +88,7 @@
 		  							'stretching': 'exactfit',
 		  							'wmode': 'transparent',
 		  							'autostart': true,
-		  							'file':videoData[$('#video').attr('data-index')]['video']['file'],
+		  							'file':titbitData[$('#video').attr('data-index')]['video']['file'],
 		  							'width': $(window).height()*0.8,
 		  							'height': $(window).height()*0.6,
 		  							'screencolor':'#000',
@@ -116,7 +114,7 @@
 				}
 			});
 
-			$("a#"+videoData[0]['video']['id']).fancybox({
+			$("a#"+titbitData[0]['video']['id']).fancybox({
 				'content':'<div id="video"></div>',
 				'hideOnContentClick': false,
 				'scrolling': false,
@@ -152,7 +150,7 @@
 						{ 'type': 'download' }
 						],
 						'autostart': true,
-						'file': videoData[0]['video']['file']
+						'file': titbitData[0]['video']['file']
 					});
 				},
 				beforeClose : function() {
@@ -166,32 +164,32 @@
 			});
 		});
 		function loadHtml(){
-			var slideCount = videoData.length;
+			var slideCount = titbitData.length;
 			var showcaseInnerHtml = "";
 			var orbitHtml = "";
 			var textHtml = "";
 			var thumbnailHtml = "";
 			for(var i = 0; i < slideCount ; i++){
-				showcaseInnerHtml=showcaseInnerHtml+"<div class=\"showcase-slide\"><div style=\"background-image: url('"+videoData[i]['background']+"');background-size:cover;\" class=\"showcase-content\"><div class=\"showcase-content-wrapper\"><div class=\"center-div\">";
+				showcaseInnerHtml=showcaseInnerHtml+"<div class=\"showcase-slide\"><div style=\"background-image: url('"+titbitData[i]['background']+"');background-size:cover;\" class=\"showcase-content\"><div class=\"showcase-content-wrapper\"><div class=\"center-div\">";
 				
 				thumbnailHtml = "<div class=\"showcase-thumbnail\">"
-								+"<img src=\""+videoData[i]['thumbnail']+"\" width=\"180px\"/>"
+								+"<img src=\""+titbitData[i]['thumbnail']+"\" width=\"230px\"/>"
 								+"<div class=\"showcase-thumbnail-cover\"></div>"
 								+"</div>";
 
-				var imgCount = videoData[i]['orbit']['images'].length;
-				var pCount = videoData[i]['text']['p'].length;
+				var imgCount = titbitData[i]['orbit']['images'].length;
+				var pCount = titbitData[i]['text']['p'].length;
 
-				textHtml = "<div id=\"text\"><h3>"+videoData[i]['text']['title']+"</h3><div id=\"text-panel\" class=\"scroll-pane\">"
-						 + "<p></p><p><strong>"+videoData[i]['text']['date']+"</strong></p>";
+				textHtml = "<div id=\"text\" class=\"scroll-pane\"><h3>"+titbitData[i]['text']['title']+"</h3><div id=\"text-panel\">"
+						 + "<p></p><p><strong>"+titbitData[i]['text']['date']+"</strong></p><a id=\""+titbitData[i]['video']['id']+"\" style=\"cursor:pointer;margin:0;\"><img src=\"css/images/TrendyGlobal/movie.png\">&nbsp;&nbsp;观看视频</a>";
 				for(var k = 0; k < pCount; k++){
-					textHtml = textHtml + "<p>"+ videoData[i]['text']['p'][k] +"</p>";
+					textHtml = textHtml + "<p>"+ titbitData[i]['text']['p'][k] +"</p>";
 				}
-				textHtml = textHtml + "<a id=\""+videoData[i]['video']['id']+"\" style=\"cursor:pointer\"><img src=\"css/images/TrendyGlobal/movie.png\">&nbsp;&nbsp;观看视频</a></div></div>";	
+				textHtml = textHtml + "</div></div>";	
 
-				orbitHtml = "<div class=\"orbit-pictures\">\<div id=\""+videoData[i]['orbit']['id']+"\">";
+				orbitHtml = "<div class=\"orbit-pictures\">\<div id=\""+titbitData[i]['orbit']['id']+"\">";
 				for(var k = 0; k < imgCount; k++){
-					orbitHtml = orbitHtml + "<img src=\""+videoData[i]['orbit']['images'][k]['src']+"\" width=\""+videoData[i]['orbit']['images'][k]['width']+"\" height=\""+videoData[i]['orbit']['images'][k]['height']+"\" />";
+					orbitHtml = orbitHtml + "<img src=\""+titbitData[i]['orbit']['images'][k]['src']+"\" width=\""+titbitData[i]['orbit']['images'][k]['width']+"\" height=\""+titbitData[i]['orbit']['images'][k]['height']+"\" />";
 				}
 				orbitHtml = orbitHtml + "</div></div>";
 

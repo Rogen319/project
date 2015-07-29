@@ -9,20 +9,23 @@ body{
 #main-content{
 	display: block; 
 	overflow: hidden;
+	width: 100%;
 	height: 600px;
 }
 .orbit-pictures{
-	float:left;
-	margin-top:60px;
+	margin-bottom: 30px;
 }
 .center-div{
+	width:50%;
+	padding-top: 50px;
+	margin-left:10%;
+}
+.orbit-wrapper{
 	margin: 0 auto;
-	width: 960px;
-	clear: left;
 }
 
 #showcase{width: 100%;}
-#showcase div.showcase-thumbnail { width: 180px; height: 98px; margin-right: 40px; margin-top: 15px; }
+#showcase div.showcase-thumbnail { width: 230px; height: 114px; margin-right: 40px; margin-top: 16px; }
 #showcase div.showcase-thumbnail img { border: none; }
 /* Assign the correct showcase height to prevent loading jumps in IE */
 .showcase-load { height: 400px; /* Same as showcase javascript option */ overflow: hidden; }
@@ -50,7 +53,7 @@ div.showcase-tooltip { background-color: #fff; color: #000; text-align: left; pa
 .showcase-button-wrapper span { margin-right: 3px; padding: 2px 5px 0px 5px; cursor: pointer; font-size: 12px; color: #444444; }
 .showcase-button-wrapper span.active { color: #fff; }
 /* Thumbnails */
-.showcase-thumbnail-container /* Used for backgrounds, no other styling!!! */ { background:rgba(0,0,0,0.5); height: 132px; position: relative; margin-top: -150px;}
+.showcase-thumbnail-container /* Used for backgrounds, no other styling!!! */ { background:rgba(255,255,255,0.3); width: 250px; position: relative; margin-left: -300px;}
 .showcase-thumbnail-wrapper { overflow: hidden; }
 .showcase-thumbnail-wrapper showcase-thumbnail-wrapper-horizontal { width: 1962px; }
 .showcase-thumbnail { width: 120px; height: 98px; cursor: pointer; position: relative; }
@@ -65,10 +68,10 @@ div.showcase-tooltip { background-color: #fff; color: #000; text-align: left; pa
 .showcase-thumbnail-wrapper-vertical .showcase-thumbnail { margin-bottom: 10px; }
 .showcase-thumbnail-button-backward, .showcase-thumbnail-button-forward { padding: 7px; cursor: pointer; }
 .showcase-thumbnail-button-backward { padding-bottom: 0px; padding-right: 0px; }
-.showcase-thumbnail-button-backward .showcase-thumbnail-vertical, .showcase-thumbnail-button-forward .showcase-thumbnail-vertical, .showcase-thumbnail-button-forward .showcase-thumbnail-horizontal, .showcase-thumbnail-button-backward .showcase-thumbnail-horizontal { background-image: url(images/arrows-small.png); background-repeat: no-repeat; display: block; width: 17px; height: 17px; }
-.showcase-thumbnail-button-backward .showcase-thumbnail-vertical { background-position: 0 -51px; margin-left: 55px; }
+.showcase-thumbnail-button-backward .showcase-thumbnail-vertical, .showcase-thumbnail-button-forward .showcase-thumbnail-vertical, .showcase-thumbnail-button-forward .showcase-thumbnail-horizontal, .showcase-thumbnail-button-backward .showcase-thumbnail-horizontal { background: url(images/arrows-small.png) no-repeat; display: block; width: 17px; height: 17px; }
+.showcase-thumbnail-button-backward .showcase-thumbnail-vertical { background-position: 0 -51px; margin-left: 110px; }
 .showcase-thumbnail-button-backward:hover .showcase-thumbnail-vertical { background-position: -17px -51px; }
-.showcase-thumbnail-button-forward .showcase-thumbnail-vertical { background-position: 0 -34px; margin-left: 55px; }
+.showcase-thumbnail-button-forward .showcase-thumbnail-vertical { background-position: 0 -34px; margin-left: 110px; }
 .showcase-thumbnail-button-forward:hover .showcase-thumbnail-vertical { background-position: -17px -34px; }
 .showcase-thumbnail-button-backward .showcase-thumbnail-horizontal { background-position: 0 -17px; margin-top: 58px; margin-bottom: 52px; }
 .showcase-thumbnail-button-backward:hover .showcase-thumbnail-horizontal { background-position: -17px -17px; }
@@ -79,13 +82,13 @@ div.showcase-tooltip { background-color: #fff; color: #000; text-align: left; pa
 /* Clear (used for horizontal thumbnails)
 -------------------------------------------*/
 .clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; float: none; }
-#showcase div#text { width: 340px; height:370px; margin-left: 70px; margin-top: 60px; overflow: hidden; color: #fff; float: left; text-decoration: none; font-size: 12px;text-align: left;color: #fff;line-height: 20px;letter-spacing: 1px;}
-#text h3 { font-size: 17px; text-align: left; line-height: 25px; height: 35px; margin: 0; padding: 0; margin-top: 30px; }
+#showcase div#text {width:100% !important;margin-top: 10px;  height:150px; overflow: hidden; color: #fff; text-decoration: none; font-size: 12px;text-align: left;color: #fff;line-height: 20px;letter-spacing: 1px;}
+#text h3 { font-size: 17px; text-align: left; line-height: 25px; height: 35px; margin: 0; padding: 0; }
 #text a { color: #fff; text-decoration: none; font-size: 12px; text-align: left;display:inline-block;margin-top:15px;}
 #text .scroll-pane a {margin: 0;}
 #text .scroll-pane a:hover {text-decoration: underline;}
 #text a img { border: none;}
-#text #text-panel {height:300px;padding-right:10px;overflow:hidden;line-height:20px;font-size:13px;text-align:left;margin:0;padding:0;margin-bottom:10px;}
+#text #text-panel {width: 100% !important;height:300px;padding-right:10px;overflow:hidden;line-height:20px;font-size:13px;text-align:left;margin:0;padding:0;margin-bottom:10px;}
 #text #text-panel p {margin:5px 0;}
 #text span { color: #fff; text-decoration: none; font-size: 12px; text-align: left; }
 .showcase-thumbnail-restriction {width:905px;}
