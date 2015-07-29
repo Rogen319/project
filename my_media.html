@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>媒体报道</title>
+	<script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.carouFredSel-6.1.0.js"></script>
+	<script type="text/javascript" src="data/media2014spring_data.js"></script>
+	<script type="text/javascript" src="data/media_leftmenu_data.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/my_media.css" />
+          <script type="text/javascript">
+          $(function(){ 
+	  		  $(".media-left").html(loadLeftHtml());
+			  $(".media").html(loadMediaHtml());
+			  $(".media").append("<a class=\"prev\" id=\"media_prev\" href=\"#\"><span>prev</span></a> <a class=\"next\" id=\"media_next\" href=\"#\"><span>next</span></a>");
+              $("#firstpane p.menu_head").toggle(
+                  function(){
+                      $(this).addClass("menu_head_open");
+                      $(this).next("div.menu_body").show();
+                  },
+                  function(){
+                      $(this).removeClass("menu_head_open");
+                      $(this).next("div.menu_body").hide();
+                  });
+              $("#year2014").click();
+  
+              $("#firstpane a,div.media-img a").click(function(e){
+                  window.top.location.hash = $(this).attr('href');
+              });
+              $("#media-img").carouFredSel({
+                  items	: 1,
+                  scroll	: {
+                      items			: 1,
+                      duration		: 1000,
+                      timeoutDuration	: 1000,
+                      pauseOnHover	: true
+                  },
+                  auto	: false,
+                  prev	: "#media_prev",
+                  next	: "#media_next"
+              });
+          });
+          var timeout         = 500;
+          var closetimer		= 0;
+          var ddmenuitem      = 0;
+          function mopen(id)
+          {	
+              mcancelclosetime();
+              if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+              ddmenuitem = document.getElementById(id);
+              ddmenuitem.style.visibility = 'visible';
+          }
+          function mclose(){if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';}
+          function mclosetime(){closetimer = window.setTimeout(mclose, timeout);}
+          function mcancelclosetime(){if(closetimer){window.clearTimeout(closetimer);closetimer = null;}}
+          document.onclick = mclose; 
+		  
+		  function loadLeftHtml(){
+			  var menuLen = leftMenu.length;
+			  var result = "";
+			  result += " <div class=\"media-nav-all\"> ALL </div>";
+			  result += "<div id=\"firstpane\" class=\"menu_list\">";
+			  for(var i = 0; i < menuLen ; i++){
+				  result += "<p class=\"menu_head\" id=\"year2014\">";
+				  result += leftMenu[i]['year'];
+				  result += "年</p>";
+				  result += "<div class=\"menu_body\">";
+				  for(var j =0; j < leftMenu[i]['seasons'].length; j++){
+					  result+= "<a href=\"\">";
+					  result+= leftMenu[i]['seasons'][j];
+					  result+= "</a>";
+				  }
+				  result += "</div>";
+			  }
+			  
+			  return result;
+		  }
+		  
+		  function loadMediaHtml(){
+			  var result = "";
+			  result += "<div id=\"media-img\" class=\"media-img\">";
+			  for(var i=0; i < media2014_data.length; i++){
+				if((i%10)==0){
+			  		result += "<div class=\"media-list-box\">";
+				}
+				result += "<a href=\"\">";
+				result += "<img src=\"";
+				result += media2014_data[i]['src'];
+				result += "\"</a>";
+				if((i%10)==9){
+			  		result += "</div>";
+				}
+			  }
+			  result += "</div>";
+			  return result;
+		  }
+      </script>
+</head>
+
+<body>
+	<div id="all">
+			<div id="main-content">
+            <div class="media-wrapper">
+            	<div class="media-left">
+                	<!--content load in js-->
+                </div>
+                <div class="media">
+                	<!--content load in js-->
+                </div>
+            </div>    
+            </div>
+            <div id="foot">&nbsp;<a href="http://weibo.com/trendiano" target="_blank">品牌微博&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://trendiano.tmall.com/" target="_blank">官方购物网&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://www.trendy-global.com/" target="_blank">联系我们&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://www.trendy-global.com/" target="_blank">赫基官方网站&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://vip.trendy-global.com/" target="_blank">会员俱乐部&nbsp;&nbsp;</a>&nbsp;&nbsp;</div>
+
+			<div id="copyright">Copyright @ 2013 Trendy International Group All Rights Reserved&nbsp;&nbsp;<br /><a href="http://www.miibeian.gov.cn/" target="_blank">备案号：粤ICP备11010295&nbsp;&nbsp;</a> </div>
+	</div>
+	</div>
+
+</div>
+</body>
+</html>
