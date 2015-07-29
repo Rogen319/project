@@ -1,17 +1,31 @@
 @charset "utf-8";
-/*#showcase div {
-	margin:0;
-	padding:0;
-	border:0;
-}*/
-#showcase div.showcase-thumbnail { width: 180px; height: 98px; margin-right: 5px; margin-top: 15px; }
+.jwlogo { display:none;}
+body{
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica,"微软雅黑",Arial,sans-serif;
+	background-color: #ccc;
+}
+#main-content{
+	display: block; 
+	overflow: hidden;
+	height: 600px;
+}
+.orbit-pictures{
+	float:left;
+	margin-top:60px;
+}
+.center-div{
+	margin: 0 auto;
+	width: 960px;
+	clear: left;
+}
+
+#showcase{width: 100%;}
+#showcase div.showcase-thumbnail { width: 180px; height: 98px; margin-right: 40px; margin-top: 15px; }
 #showcase div.showcase-thumbnail img { border: none; }
-#awOnePageButton .view-slide { display: none; }
-/* This class is removed after the showcase is loaded */
 /* Assign the correct showcase height to prevent loading jumps in IE */
 .showcase-load { height: 400px; /* Same as showcase javascript option */ overflow: hidden; }
-/* Container when content is shown as one page */
-.showcase-onepage { /**/ }
 /* Container when content is shown in slider */
 .showcase { position: relative; margin: auto; }
 .showcase-content-container { /*background-color: #000;*/ }
@@ -23,26 +37,26 @@
 .showcase-arrow-next:hover { background-position: -34px -34px; }
 /* Content */
 .showcase-content { /*background-color: #000;*/ text-align: center; }
-.showcase-content-wrapper { background-color: #000; background-position: bottom center; background-repeat: no-repeat; text-align: center; height: 573px; width: 960px;/*display: table-cell;*//*vertical-align: middle;*/ }
+.showcase-content-wrapper { background-color: rgba(0,0,0,0.5); background-position: bottom center; background-repeat: no-repeat; text-align: center; height: 600px; /*display: table-cell;*//*vertical-align: middle;*/ }
 /* Styling the tooltips */
 .showcase-plus-anchor { background-image: url('images/plus.png'); background-repeat: no-repeat; }
 .showcase-plus-anchor:hover { background-position: -32px 0; }
-div.showcase-tooltip { background-color: #fff; color: #000; text-align: left; padding: 5px 8px; background-image: url(images/white-opacity-80.png); }
+div.showcase-tooltip { background-color: #fff; color: #000; text-align: left; padding: 5px 8px; background-image: url('images/white-opacity-80.png'); }
 /* Styling the caption */
-.showcase-caption { color: #000; padding: 8px 15px; text-align: left; position: absolute; bottom: 10px; left: 10px; right: 10px; display: none; background-image: url(images/white-opacity-80.png); }
+.showcase-caption { color: #000; padding: 8px 15px; text-align: left; position: absolute; bottom: 10px; left: 10px; right: 10px; display: none; background-image: url('images/white-opacity-80.png'); }
 .showcase-onepage .showcase-content { margin-bottom: 10px; }
 /* Button Wrapper */
 .showcase-button-wrapper { clear: both; margin-top: 10px; text-align: center; }
 .showcase-button-wrapper span { margin-right: 3px; padding: 2px 5px 0px 5px; cursor: pointer; font-size: 12px; color: #444444; }
 .showcase-button-wrapper span.active { color: #fff; }
 /* Thumbnails */
-.showcase-thumbnail-container /* Used for backgrounds, no other styling!!! */ { background:transparent; height: 132px; position: relative; }
+.showcase-thumbnail-container /* Used for backgrounds, no other styling!!! */ { background:transparent; height: 132px; position: relative; margin-top: -150px;}
 .showcase-thumbnail-wrapper { overflow: hidden; }
 .showcase-thumbnail-wrapper showcase-thumbnail-wrapper-horizontal { width: 1962px; }
 .showcase-thumbnail { width: 120px; height: 98px; cursor: pointer; position: relative; }
 .showcase-thumbnail-caption { position: absolute; bottom: 2px; padding-left: 10px; padding-bottom: 5px; }
 .showcase-thumbnail-content { padding: 10px; text-align: center; padding-top: 25px; }
-.showcase-thumbnail-cover { background-image: url(images/black-opacity-40.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+.showcase-thumbnail-cover { background-image: url('images/black-opacity-40.png'); position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
 .showcase-thumbnail:hover .showcase-thumbnail-cover { display: none; }
 .showcase-thumbnail.active .showcase-thumbnail-cover { display: none; }
 .showcase-thumbnail-wrapper-horizontal { padding: 3px 10px 10px 10px; }
@@ -65,7 +79,7 @@ div.showcase-tooltip { background-color: #fff; color: #000; text-align: left; pa
 /* Clear (used for horizontal thumbnails)
 -------------------------------------------*/
 .clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; float: none; }
-#showcase div#text { width: 340px; height:370px; padding-left: 30px; padding-top: 50px; overflow: hidden; color: #fff; float: left; text-decoration: none; font-size: 12px;text-align: left;color: #fff;}
+#showcase div#text { width: 340px; height:370px; padding-left: 60px; padding-top: 50px; overflow: hidden; color: #fff; float: left; text-decoration: none; font-size: 12px;text-align: left;color: #fff;line-height: 20px;letter-spacing: 1px;}
 #text h3 { font-size: 17px; text-align: left; line-height: 25px; height: 35px; margin: 0; padding: 0; margin-top: 30px; }
 #text a { color: #fff; text-decoration: none; font-size: 12px; text-align: left;display:inline-block;margin-top:15px;}
 #text .scroll-pane a {margin: 0;}
@@ -75,3 +89,29 @@ div.showcase-tooltip { background-color: #fff; color: #000; text-align: left; pa
 #text #text-panel p {margin:5px 0;}
 #text span { color: #fff; text-decoration: none; font-size: 12px; text-align: left; }
 .showcase-thumbnail-restriction {width:905px;}
+
+/*cn.html*/
+#all { width: 100%; margin: 0 auto; }
+/*foot*/
+#foot { font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #fff; line-height: 30px; display: block; float: left; }
+#foot a { font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #fff; line-height: 30px; text-decoration: none; }
+#foot a:hover { font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #231f20; line-height: 30px; text-decoration: none; }
+/*copyright*/
+#copyright {font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #fff; line-height: 20px; float: right; text-align: right; }
+#copyright a { font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #fff; line-height: 20px; text-decoration: none; }
+#copyright a:hover { font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #231f20; line-height: 20px; text-decoration: none; }
+a.prev,
+a.next { width: 17px; height: 33px; display: block; position: absolute; top: 85px; }
+a.prev { left: 1px; background: url("images/prev.png") }
+a.prev:hover { background: url("images/prev1.png") }
+a.next { right: 1px; background: url("images/nex.png") }
+a.next:hover { background: url("images/nex1.png") }
+a.prev span,
+a.next span { display: none; }
+.clearfix { float: none; clear: both; }
+.button { width: 283px; height: 100px; float: left; margin-left: 20px; margin-top: 429px; }
+#prev { background-image: url("images/previous.png"); width: 283px; height: 49px; float: left; text-decoration: none; }
+#next { background-image: url("images/next.png"); width: 160px; height: 46px; float: left; text-decoration: none; }
+a #prev span { display: none; text-decoration: none; }
+#prev:hover { background-image: url("images/previous1.png"); }
+#next:hover { background-image: url("images/next1.png"); }
