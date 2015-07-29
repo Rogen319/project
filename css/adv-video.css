@@ -50,7 +50,7 @@ div.showcase-tooltip { background-color: #fff; color: #000; text-align: left; pa
 .showcase-button-wrapper span { margin-right: 3px; padding: 2px 5px 0px 5px; cursor: pointer; font-size: 12px; color: #444444; }
 .showcase-button-wrapper span.active { color: #fff; }
 /* Thumbnails */
-.showcase-thumbnail-container /* Used for backgrounds, no other styling!!! */ { background:transparent; height: 132px; position: relative; margin-top: -150px;}
+.showcase-thumbnail-container /* Used for backgrounds, no other styling!!! */ { background:rgba(0,0,0,0.5); height: 132px; position: relative; margin-top: -150px;}
 .showcase-thumbnail-wrapper { overflow: hidden; }
 .showcase-thumbnail-wrapper showcase-thumbnail-wrapper-horizontal { width: 1962px; }
 .showcase-thumbnail { width: 120px; height: 98px; cursor: pointer; position: relative; }
@@ -79,7 +79,7 @@ div.showcase-tooltip { background-color: #fff; color: #000; text-align: left; pa
 /* Clear (used for horizontal thumbnails)
 -------------------------------------------*/
 .clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; float: none; }
-#showcase div#text { width: 340px; height:370px; padding-left: 60px; padding-top: 50px; overflow: hidden; color: #fff; float: left; text-decoration: none; font-size: 12px;text-align: left;color: #fff;line-height: 20px;letter-spacing: 1px;}
+#showcase div#text { width: 340px; height:370px; margin-left: 70px; margin-top: 60px; overflow: hidden; color: #fff; float: left; text-decoration: none; font-size: 12px;text-align: left;color: #fff;line-height: 20px;letter-spacing: 1px;}
 #text h3 { font-size: 17px; text-align: left; line-height: 25px; height: 35px; margin: 0; padding: 0; margin-top: 30px; }
 #text a { color: #fff; text-decoration: none; font-size: 12px; text-align: left;display:inline-block;margin-top:15px;}
 #text .scroll-pane a {margin: 0;}

@@ -26,6 +26,9 @@
 	<script src="data/video-data.js"></script>
 	<script type="text/javascript">
 	  	$(function(){
+	  		$(window).resize(function(){
+	  			location.reload();
+			});
 	  		$("#showcase").html(loadHtml());
 	  		$("#showcase").awShowcase(
 	  		{
