@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/titbits.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>海林集团 官方网站</title>
+	<script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.aw-showcase.js"></script>
+	<link rel="stylesheet" href="css/orbit-1.2.31.css">
+	<script type="text/javascript" src="js/lib/jquery.orbit-1.2.3.min.js"></script>
+	<script type='text/javascript' src='js/lib/jwplayer6.js'></script>
+	<link rel="stylesheet" href="css/jquery.fancybox.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="js/lib/jquery.fancybox.js"></script>
+	<link rel="stylesheet" href="css/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="js/lib/jquery.fancybox-buttons.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.fancybox-media.js"></script>
+	<link rel="stylesheet" href="css/jquery.fancybox-thumbs.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="js/lib/jquery.fancybox-thumbs.js"></script>
+<!--[if IE]>
+	   <style type="text/css">
+		   .timer { display: none !important; }
+		   div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);zoom: 1; }
+	  </style>
+	  <![endif]-->
+	<script src="data/titbits-data.js"></script>
+	<script type="text/javascript">
+	  	$(function(){
+	  		$(window).resize(function(){
+	  			location.reload();
+			});
+	  		$("#showcase").html(loadHtml());
+	  		$("#showcase").awShowcase(
+	  		{
+	  			content_width:      $(window).width(),
+	  			content_height:     600,
+	  			fit_to_parent:      false,
+	  			auto:         false,
+	  			interval:       3000,
+	  			continuous:       false,
+	  			loading:        true,
+	  			tooltip_width:      200,
+	  			tooltip_icon_width:   32,
+	  			tooltip_icon_height:  32,
+	  			tooltip_offsetx:    18,
+	  			tooltip_offsety:    0,
+	  			arrows:         false,
+	  			buttons:        false,
+	  			btn_numbers:      true,
+	  			keybord_keys:     true,
+	  			mousetrace:       false,
+	  			pauseonover:      true,
+	  			stoponclick:      true,
+	  			transition:       'vslide',
+	  			transition_delay:   0,
+	  			transition_speed:   500,
+	  			show_caption:     'onload',
+	  			thumbnails:       true,
+	  			thumbnails_position:  'outside-last',
+	  			thumbnails_direction: 'vertical',
+	  			thumbnails_slidex:    1,
+	  			dynamic_height:     false,
+	  			speed_change:     false,
+	  			viewline:       false,
+	  			custom_function:    function() {
+	  				$('.scroll-pane').jScrollPane();
+
+	  				var slideCount = titbitData.length;
+	  				for(var i = 0; i < slideCount ; i++){
+	  					$('#'+titbitData[i]['orbit']['id']).orbit();
+	  					$('#'+titbitData[i]['video']['id']).click(function(){});
+	  					$("a#"+titbitData[i]['video']['id']).fancybox({
+		  					'content':'<div id=\"video\" data-index=\"'+i+'\"></div>',
+		  					'hideOnContentClick': false,
+		  					'scrolling': false,
+		  					'titleShow': false,
+		  					'autoDimensions': false,
+		  					'overlayOpacity': 0.3,
+		  					'width': 640, 'height':320,
+		  					'padding': 0,
+		  					'helpers': {
+		  						title : null            
+		  					} ,
+		  					afterShow: function() {
+		  						jwplayer('video').setup({
+		  							'autostart': 'true',
+		  							'bufferlength': '10',
+		  							'controlbar': 'bottom',
+		  							'display.showmute': 'true',
+		  							'stretching': 'exactfit',
+		  							'wmode': 'transparent',
+		  							'autostart': true,
+		  							'file':titbitData[$('#video').attr('data-index')]['video']['file'],
+		  							'width': $(window).width()*0.6,
+		  							'height': $(window).height()*0.6,
+		  							'screencolor':'#000',
+		  							'backcolor' : '#000',
+		  							'frontcolor' : '#b6bbbe',
+		  							'modes': [
+		  							{ 'type': 'flash', 'src': './js/plugins/jwplayer.flash.swf' },
+		  							{ 'type': 'html5' },
+		  							{ 'type': 'download' }
+		  							]
+		  						});
+		  					},
+		  					beforeClose : function() {
+		  						if(parent.top.$('#mute').hasClass('mute_off')){
+		  							parent.top.$('#jquery_jplayer_1').jPlayer('volume', 1);
+		  							parent.top.$('#mute').removeClass('mute_off').addClass('mute_on');
+		  						}
+
+		  						jwplayer("video").remove(); 
+		  					}
+		  				});
+	  				}
+				}
+			});
+
+			$("a#"+titbitData[0]['video']['id']).fancybox({
+				'content':'<div id="video"></div>',
+				'hideOnContentClick': false,
+				'scrolling': false,
+				'titleShow': false,
+				'autoDimensions': false,
+				'overlayOpacity': 0.3,
+				'width': 640, 'height':320,
+				'padding': 0,
+				'helpers': {
+					title : null            
+				} ,
+				afterShow: function() {
+					if(parent.top.$('#mute').hasClass('mute_on')){
+						parent.top.$('#jquery_jplayer_1').jPlayer('volume', 0);
+						parent.top.$('#mute').removeClass('mute_on').addClass('mute_off');
+					}
+
+					jwplayer('video').setup({
+						'autostart': 'true',
+						'bufferlength': '10',
+						'controlbar': 'bottom',
+						'display.showmute': 'true',
+						'stretching': 'exactfit',
+						'wmode': 'transparent',
+						'width': $(window).width()*0.6,
+	  					'height': $(window).height()*0.6,
+						'screencolor':'#000',
+						'backcolor' : '#000',
+						'frontcolor' : '#b6bbbe',
+						'modes': [
+						{ 'type': 'flash', 'src': './js/plugins/jwplayer.flash.swf' },
+						{ 'type': 'html5' },
+						{ 'type': 'download' }
+						],
+						'autostart': true,
+						'file': titbitData[0]['video']['file']
+					});
+				},
+				beforeClose : function() {
+					if(parent.top.$('#mute').hasClass('mute_off')){
+						parent.top.$('#jquery_jplayer_1').jPlayer('volume', 1);
+						parent.top.$('#mute').removeClass('mute_off').addClass('mute_on');
+					}
+
+					jwplayer("video").remove(); 
+				}
+			});
+		});
+		function loadHtml(){
+			var slideCount = titbitData.length;
+			var showcaseInnerHtml = "";
+			var orbitHtml = "";
+			var textHtml = "";
+			var thumbnailHtml = "";
+			for(var i = 0; i < slideCount ; i++){
+				showcaseInnerHtml=showcaseInnerHtml+"<div class=\"showcase-slide\"><div style=\"background-image: url('"+titbitData[i]['background']+"');background-size:cover;\" class=\"showcase-content\"><div class=\"showcase-content-wrapper\"><div class=\"center-div\">";
+				
+				thumbnailHtml = "<div class=\"showcase-thumbnail\">"
+								+"<img src=\""+titbitData[i]['thumbnail']+"\" width=\"180px\"/>"
+								+"<div class=\"showcase-thumbnail-cover\"></div>"
+								+"</div>";
+
+				var imgCount = titbitData[i]['orbit']['images'].length;
+				var pCount = titbitData[i]['text']['p'].length;
+
+				textHtml = "<div id=\"text\" class=\"scroll-pane\"><h3>"+titbitData[i]['text']['title']+"</h3><div id=\"text-panel\">"
+						 + "<p></p><p><strong>"+titbitData[i]['text']['date']+"</strong></p><a id=\""+titbitData[i]['video']['id']+"\" style=\"cursor:pointer;margin:0;\"><img src=\"css/images/TrendyGlobal/movie.png\">&nbsp;&nbsp;观看视频</a>";
+				for(var k = 0; k < pCount; k++){
+					textHtml = textHtml + "<p>"+ titbitData[i]['text']['p'][k] +"</p>";
+				}
+				textHtml = textHtml + "</div></div>";	
+
+				orbitHtml = "<div class=\"orbit-pictures\">\<div id=\""+titbitData[i]['orbit']['id']+"\">";
+				for(var k = 0; k < imgCount; k++){
+					orbitHtml = orbitHtml + "<img src=\""+titbitData[i]['orbit']['images'][k]['src']+"\" width=\""+titbitData[i]['orbit']['images'][k]['width']+"\" height=\""+titbitData[i]['orbit']['images'][k]['height']+"\" />";
+				}
+				orbitHtml = orbitHtml + "</div></div>";
+
+				showcaseInnerHtml=showcaseInnerHtml+orbitHtml+textHtml+"</div></div></div>"+thumbnailHtml+"</div>";
+			}
+			return showcaseInnerHtml;
+		}
+	</script>
+<link rel="stylesheet" href="css/jquery.jscrollpane.css" type="text/css" media="screen" />
+<style type="text/css" id="page-css">
+	.scroll-pane { width: 330px; overflow: auto; outline: none; }
+</style>
+<script type="text/javascript" src="js/lib/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery.mousewheel.js"></script>
+<script type="text/javascript" id="sourcecode">
+	$(function(){
+		$('.scroll-pane').jScrollPane();
+	});
+</script>
+</head>
+<body>
+	<div id="all">
+			<div id="main-content">
+				<script type="text/javascript">$(window).load(function(){$('#featured1').orbit();});</script>
+				<div id="showcase" class="showcase">
+					<!--load in js-->
+				</div>
+			</div>
+		<div id="foot">&nbsp;<a href="http://weibo.com/trendiano" target="_blank">品牌微博&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://trendiano.tmall.com/" target="_blank">官方购物网&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://www.trendy-global.com/" target="_blank">联系我们&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://www.trendy-global.com/" target="_blank">赫基官方网站&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://vip.trendy-global.com/" target="_blank">会员俱乐部&nbsp;&nbsp;</a>&nbsp;&nbsp;</div>
+
+		<div id="copyright">Copyright @ 2013 Trendy International Group All Rights Reserved&nbsp;&nbsp;<br /><a href="http://www.miibeian.gov.cn/" target="_blank">备案号：粤ICP备11010295&nbsp;&nbsp;</a> </div>
+	</div>
+</body>
+</html>
