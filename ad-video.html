@@ -23,8 +23,10 @@
 		   div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);zoom: 1; }
 	  </style>
 	  <![endif]-->
+	<script src="data/video-data.js"></script>
 	<script type="text/javascript">
 	  	$(function(){
+	  		$("#showcase").html(loadHtml());
 	  		$("#showcase").awShowcase(
 	  		{
 	  			content_width:      $(window).width(),
@@ -60,211 +62,58 @@
 	  			custom_function:    function() {
 	  				$('.scroll-pane').jScrollPane();
 
-	  				$('#featured1').orbit();
-	  				$('#inline1').click(function(){});
-	  				$("a#inline1").fancybox({
-	  					'content':'<div id="video"></div>',
-	  					'hideOnContentClick': false,
-	  					'scrolling': false,
-	  					'titleShow': false,
-	  					'autoDimensions': false,
-	  					'overlayOpacity': 0.3,
-	  					'width': 640, 'height':320,
-	  					'padding': 0,
-	  					'helpers': {
-	  						title : null            
-	  					} ,
-	  					afterShow: function() {
-	  						jwplayer('video').setup({
-	  							'autostart': 'true',
-	  							'bufferlength': '10',
-	  							'controlbar': 'bottom',
-	  							'display.showmute': 'true',
-	  							'stretching': 'exactfit',
-	  							'wmode': 'transparent',
-	  							'autostart': true,
-	  							'file':"./mp4/ost.mp3",
-	  							'width': $(window).width()*0.6,
-	  							'height': $(window).height()*0.6,
-	  							'screencolor':'#000',
-	  							'backcolor' : '#000',
-	  							'frontcolor' : '#b6bbbe',
-	  							'modes': [
-	  							{ 'type': 'flash', 'src': './js/plugins/jwplayer.flash.swf' },
-	  							{ 'type': 'html5' },
-	  							{ 'type': 'download' }
-	  							]
-	  						});
-	  					},
-	  					beforeClose : function() {
-	  						if(parent.top.$('#mute').hasClass('mute_off')){
-	  							parent.top.$('#jquery_jplayer_1').jPlayer('volume', 1);
-	  							parent.top.$('#mute').removeClass('mute_off').addClass('mute_on');
-	  						}
+	  				var slideCount = videoData.length;
+	  				for(var i = 0; i < slideCount ; i++){
+	  					$('#'+videoData[i]['orbit']['id']).orbit();
+	  					$('#'+videoData[i]['video']['id']).click(function(){});
+	  					$("a#"+videoData[i]['video']['id']).fancybox({
+		  					'content':'<div id=\"video\" data-index=\"'+i+'\"></div>',
+		  					'hideOnContentClick': false,
+		  					'scrolling': false,
+		  					'titleShow': false,
+		  					'autoDimensions': false,
+		  					'overlayOpacity': 0.3,
+		  					'width': 640, 'height':320,
+		  					'padding': 0,
+		  					'helpers': {
+		  						title : null            
+		  					} ,
+		  					afterShow: function() {
+		  						jwplayer('video').setup({
+		  							'autostart': 'true',
+		  							'bufferlength': '10',
+		  							'controlbar': 'bottom',
+		  							'display.showmute': 'true',
+		  							'stretching': 'exactfit',
+		  							'wmode': 'transparent',
+		  							'autostart': true,
+		  							'file':videoData[$('#video').attr('data-index')]['video']['file'],
+		  							'width': $(window).width()*0.6,
+		  							'height': $(window).height()*0.6,
+		  							'screencolor':'#000',
+		  							'backcolor' : '#000',
+		  							'frontcolor' : '#b6bbbe',
+		  							'modes': [
+		  							{ 'type': 'flash', 'src': './js/plugins/jwplayer.flash.swf' },
+		  							{ 'type': 'html5' },
+		  							{ 'type': 'download' }
+		  							]
+		  						});
+		  					},
+		  					beforeClose : function() {
+		  						if(parent.top.$('#mute').hasClass('mute_off')){
+		  							parent.top.$('#jquery_jplayer_1').jPlayer('volume', 1);
+		  							parent.top.$('#mute').removeClass('mute_off').addClass('mute_on');
+		  						}
 
-	  						jwplayer("video").remove(); 
-	  					}
-	  				});
-
-	  				$('#featured2').orbit();
-	  				$('#inline2').click(function(){});
-	  				$("a#inline2").fancybox({
-	  					'content':'<div id="video"></div>',
-	  					'hideOnContentClick': false,
-	  					'scrolling': false,
-	  					'titleShow': false,
-	  					'autoDimensions': false,
-	  					'overlayOpacity': 0.3,
-	  					'width': 640, 'height':320,
-	  					'padding': 0,
-	  					'helpers': {
-	  						title : null            
-	  					} ,
-	  					afterShow: function() {
-	  						if(parent.top.$('#mute').hasClass('mute_on')){
-	  							parent.top.$('#jquery_jplayer_1').jPlayer('volume', 0);
-	  							parent.top.$('#mute').removeClass('mute_on').addClass('mute_off');
-	  						}
-
-	  						jwplayer('video').setup({
-	  							'autostart': 'true',
-	  							'bufferlength': '10',
-	  							'controlbar': 'bottom',
-	  							'display.showmute': 'true',
-	  							'stretching': 'exactfit',
-	  							'wmode': 'transparent',
-	  							'autostart': true,
-	  							'file':"./mp4/test.mp4",
-	  							'width': $(window).width()*0.6,
-	  							'height': $(window).height()*0.6,
-	  							'screencolor':'#000',
-	  							'backcolor' : '#000',
-	  							'frontcolor' : '#b6bbbe',
-	  							'modes': [
-	  							{ 'type': 'flash', 'src': './js/plugins/jwplayer.flash.swf' },
-	  							{ 'type': 'html5' },
-	  							{ 'type': 'download' }
-	  							]
-	  							
-	  						});
-	  					},
-	  					beforeClose : function() {
-	  						if(parent.top.$('#mute').hasClass('mute_off')){
-	  							parent.top.$('#jquery_jplayer_1').jPlayer('volume', 1);
-	  							parent.top.$('#mute').removeClass('mute_off').addClass('mute_on');
-	  						}
-
-	  						jwplayer("video").remove(); 
-	  					}
-	  				});
-
-	  				$('#featured3').orbit();
-	  				$('#inline3').click(function(){});
-	  				$("a#inline3").fancybox({
-	  					'content':'<div id="video"></div>',
-	  					'hideOnContentClick': false,
-	  					'scrolling': false,
-	  					'titleShow': false,
-	  					'autoDimensions': false,
-	  					'overlayOpacity': 0.3,
-	  					'width': 640, 'height':320,
-	  					'padding': 0,
-	  					'helpers': {
-	  						title : null            
-	  					} ,
-	  					afterShow: function() {
-	  						if(parent.top.$('#mute').hasClass('mute_on')){
-	  							parent.top.$('#jquery_jplayer_1').jPlayer('volume', 0);
-	  							parent.top.$('#mute').removeClass('mute_on').addClass('mute_off');
-	  						}
-
-	  						jwplayer('video').setup({
-	  							'autostart': 'true',
-	  							'bufferlength': '10',
-	  							'controlbar': 'bottom',
-	  							'display.showmute': 'true',
-	  							'stretching': 'exactfit',
-	  							'wmode': 'transparent',
-	  							'autostart': true,
-	  							'file':"./mp4/test.mp4",
-	  							'width': $(window).width()*0.6,
-	  							'height': $(window).height()*0.6,
-	  							'screencolor':'#000',
-	  							'backcolor' : '#000',
-	  							'frontcolor' : '#b6bbbe',
-	  							'modes': [
-	  							{ 'type': 'flash', 'src': './js/plugins/jwplayer.flash.swf' },
-	  							{ 'type': 'html5' },
-	  							{ 'type': 'download' }
-	  							]
-	  							
-	  						});
-	  					},
-	  					beforeClose : function() {
-	  						if(parent.top.$('#mute').hasClass('mute_off')){
-	  							parent.top.$('#jquery_jplayer_1').jPlayer('volume', 1);
-	  							parent.top.$('#mute').removeClass('mute_off').addClass('mute_on');
-	  						}
-
-	  						jwplayer("video").remove(); 
-	  					}
-	  				});
-
-					$('#featured4').orbit();
-	  				$('#inline4').click(function(){});
-	  				$("a#inline4").fancybox({
-	  					'content':'<div id="video"></div>',
-	  					'hideOnContentClick': false,
-	  					'scrolling': false,
-	  					'titleShow': false,
-	  					'autoDimensions': false,
-	  					'overlayOpacity': 0.3,
-	  					'width': $(window).width(), 'height':320,
-	  					'padding': 0,
-	  					'helpers': {
-	  						title : null            
-	  					} ,
-	  					afterShow: function() {
-	  						if(parent.top.$('#mute').hasClass('mute_on')){
-	  							parent.top.$('#jquery_jplayer_1').jPlayer('volume', 0);
-	  							parent.top.$('#mute').removeClass('mute_on').addClass('mute_off');
-	  						}
-
-	  						jwplayer('video').setup({
-	  							'autostart': 'true',
-	  							'bufferlength': '10',
-	  							'controlbar': 'bottom',
-	  							'display.showmute': 'true',
-	  							'stretching': 'exactfit',
-	  							'wmode': 'transparent',
-	  							'autostart': true,
-	  							'file':"./mp4/music.mp4",
-	  							'width': $(window).width()*0.6,
-	  							'height': $(window).height()*0.6,
-	  							'screencolor':'#000',
-	  							'backcolor' : '#000',
-	  							'frontcolor' : '#b6bbbe',
-	  							'modes': [
-	  							{ 'type': 'flash', 'src': './js/plugins/jwplayer.flash.swf' },
-	  							{ 'type': 'html5' },
-	  							{ 'type': 'download' }
-	  							]
-	  							
-	  						});
-	  					},
-	  					beforeClose : function() {
-	  						if(parent.top.$('#mute').hasClass('mute_off')){
-	  							parent.top.$('#jquery_jplayer_1').jPlayer('volume', 1);
-	  							parent.top.$('#mute').removeClass('mute_off').addClass('mute_on');
-	  						}
-
-	  						jwplayer("video").remove(); 
-	  					}
-	  				});
+		  						jwplayer("video").remove(); 
+		  					}
+		  				});
+	  				}
 				}
 			});
 
-			$("a#inline1").fancybox({
+			$("a#"+videoData[0]['video']['id']).fancybox({
 				'content':'<div id="video"></div>',
 				'hideOnContentClick': false,
 				'scrolling': false,
@@ -300,7 +149,7 @@
 						{ 'type': 'download' }
 						],
 						'autostart': true,
-						'file': './mp4/ost.mp3'
+						'file': videoData[0]['video']['file']
 					});
 				},
 				beforeClose : function() {
@@ -313,6 +162,40 @@
 				}
 			});
 		});
+		function loadHtml(){
+			var slideCount = videoData.length;
+			var showcaseInnerHtml = "";
+			var orbitHtml = "";
+			var textHtml = "";
+			var thumbnailHtml = "";
+			for(var i = 0; i < slideCount ; i++){
+				showcaseInnerHtml=showcaseInnerHtml+"<div class=\"showcase-slide\"><div style=\"background-image: url('"+videoData[i]['background']+"');background-size:cover;\" class=\"showcase-content\"><div class=\"showcase-content-wrapper\"><div class=\"center-div\">";
+				
+				thumbnailHtml = "<div class=\"showcase-thumbnail\">"
+								+"<img src=\""+videoData[i]['thumbnail']+"\" width=\"180px\"/>"
+								+"<div class=\"showcase-thumbnail-cover\"></div>"
+								+"</div>";
+
+				var imgCount = videoData[i]['orbit']['images'].length;
+				var pCount = videoData[i]['text']['p'].length;
+
+				textHtml = "<div id=\"text\"><h3>"+videoData[i]['text']['title']+"</h3><div id=\"text-panel\" class=\"scroll-pane\">"
+						 + "<p></p><p><strong>"+videoData[i]['text']['date']+"</strong></p>";
+				for(var k = 0; k < pCount; k++){
+					textHtml = textHtml + "<p>"+ videoData[i]['text']['p'][k] +"</p>";
+				}
+				textHtml = textHtml + "<a id=\""+videoData[i]['video']['id']+"\" style=\"cursor:pointer\"><img src=\"css/images/TrendyGlobal/movie.png\">&nbsp;&nbsp;观看视频</a></div></div>";	
+
+				orbitHtml = "<div class=\"orbit-pictures\">\<div id=\""+videoData[i]['orbit']['id']+"\">";
+				for(var k = 0; k < imgCount; k++){
+					orbitHtml = orbitHtml + "<img src=\""+videoData[i]['orbit']['images'][k]['src']+"\" width=\""+videoData[i]['orbit']['images'][k]['width']+"\" height=\""+videoData[i]['orbit']['images'][k]['height']+"\" />";
+				}
+				orbitHtml = orbitHtml + "</div></div>";
+
+				showcaseInnerHtml=showcaseInnerHtml+orbitHtml+textHtml+"</div></div></div>"+thumbnailHtml+"</div>";
+			}
+			return showcaseInnerHtml;
+		}
 	</script>
 <link rel="stylesheet" href="css/jquery.jscrollpane.css" type="text/css" media="screen" />
 <style type="text/css" id="page-css">
@@ -331,212 +214,7 @@
 			<div id="main-content">
 				<script type="text/javascript">$(window).load(function(){$('#featured1').orbit();});</script>
 				<div id="showcase" class="showcase">
-					<div class="showcase-slide">
-						<div style="background-image: url('img/552b2cbe0165c.jpg');background-size:cover;" class="showcase-content">
-							<div class="showcase-content-wrapper">
-								<div class="center-div">
-								<div class="orbit-pictures">
-									<div id="featured1">
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-									</div>
-								</div>
-								<div id="text">
-									<h3>TRENDIANO 3周年回顾</h3>
-									<div id="text-panel" class="scroll-pane"><p></p><p><strong>2013年8月</strong></p><p>自2010年品牌成立以来，TRENDIANO秉持“时尚改变生活”的理念，与各大主流媒体通力合作，屡出精品，持续向消费者传递出自信、积极进取、享受生活的精神和态度，现在就让我们来回顾一下品牌3年来的精彩瞬间！&nbsp;</p><p>自2010年品牌成立以来，TRENDIANO秉持“时尚改变生活”的理念，与各大主流媒体通力合作，屡出精品，持续向消费者传递出自信、积极进取、享受生活的精神和态度，现在就让我们来回顾一下品牌3年来的精彩瞬间！&nbsp;</p>
-									<p>自2010年品牌成立以来，TRENDIANO秉持“时尚改变生活”的理念，与各大主流媒体通力合作，屡出精品，持续向消费者传递出自信、积极进取、享受生活的精神和态度，现在就让我们来回顾一下品牌3年来的精彩瞬间！&nbsp;</p>
-									<p>自2010年品牌成立以来，TRENDIANO秉持“时尚改变生活”的理念，与各大主流媒体通力合作，屡出精品，持续向消费者传递出自信、积极进取、享受生活的精神和态度，现在就让我们来回顾一下品牌3年来的精彩瞬间！&nbsp;</p>													
-									<a id="inline1" style="cursor:pointer"><img src="css/images/TrendyGlobal/movie.png">&nbsp;&nbsp;观看视频</a>
-									</div>
-								</div>		
-								</div>
-							</div>
-						</div>
-						<div class="showcase-thumbnail">
-							<img src="img/52483312ea688.jpg" alt="01" width="180px"/>
-							<div class="showcase-thumbnail-cover"></div>
-						</div>
-					</div>
-					<div class="showcase-slide">
-						<div style="background-image: url('img/5249105b6cd88.png');background-size:cover;" class="showcase-content">
-							<div class="showcase-content-wrapper">
-								<div class="center-div">
-								<div class="orbit-pictures">
-									<div id="featured2">
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-									</div>
-								</div>
-								<div id="text">
-									<h3>2013 TRENDIANO秋冬预览会</h3>
-									<div id="text-panel" class="scroll-pane"><p><strong>2013年8月</strong></p><p>TRENDIANO于品牌三周年成立之际在北京时尚名所D-LOUNGE举行「 化繁为简巴洛克 」2013年秋冬预览会。</p><p>本次预览以mini show的形式吸引了60多家媒体与时尚界重量级人士到场，此外，深受各大时尚品牌喜爱的帅气主持人ANDY陈正飞与享誉国际时装周的超模李振更连袂出席，表示支持TRENDIANO第一次举办的媒体活动，为现场带来了另一波高潮。</p><p>京城八大国际男模为大家展演4大系列共32套精彩服装，分别「花漾骑士」、「经典重现」、「男孩俱乐部」以及「信仰巴洛克」，完美诠释了当季男装中「轻奢华实穿主义」的概念。</p>			<a id="inline2" style="cursor:pointer"><img src="css/images/TrendyGlobal/movie.png">&nbsp;&nbsp;观看视频</a>
-									</div>
-								</div>		
-								</div>
-							</div>
-						</div>
-						<div class="showcase-thumbnail">
-							<img src="img/52483312ea688.jpg" alt="01" width="180px"/>
-							<div class="showcase-thumbnail-cover"></div>
-						</div>
-					</div>
-					<div class="showcase-slide">
-						<div class="showcase-content" style="background-image: url('img/5249105b6cd88.png');background-size:cover;">
-							<div class="showcase-content-wrapper">
-								<div class="center-div">
-								<div class="orbit-pictures">
-									<div id="featured3">
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-									</div>
-								</div>
-								<div id="text">
-									<h3>陈正飞：巴黎寻觅之旅（预告片）</h3>
-									<div id="text-panel" class="scroll-pane"><p><strong>2013年8月</strong></p><p>这个世界有许多种可能，其中一种，是遇见另一个自己，像一个平行世界的奇妙交集。追逐的脚步一路未停，你在寻找一个怎样的自己？</p><p>视频提供：ELLE MEN</p>						
-									<a id="inline3" style="cursor:pointer"><img src="css/images/TrendyGlobal/movie.png">&nbsp;&nbsp;观看视频</a>
-									</div>
-								</div>		
-								</div>
-							</div>
-						</div>
-						<div class="showcase-thumbnail">
-							<img src="img/52483312ea688.jpg" alt="01" width="180px"/>
-							<div class="showcase-thumbnail-cover"></div>
-						</div>
-					</div>
-					<div class="showcase-slide">
-						<div style="background-image: url('img/5249105b6cd88.png');background-size:cover;" class="showcase-content">
-							<div class="showcase-content-wrapper">
-								<div class="center-div">
-								<div class="orbit-pictures">
-									<div id="featured4">
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-									</div>
-								</div>
-								<div id="text">
-									<h3>2013 TRENDIANO秋冬预览会</h3>
-									<div id="text-panel" class="scroll-pane"><p><strong>2013年8月</strong></p><p>TRENDIANO于品牌三周年成立之际在北京时尚名所D-LOUNGE举行「 化繁为简巴洛克 」2013年秋冬预览会。</p><p>本次预览以mini show的形式吸引了60多家媒体与时尚界重量级人士到场，此外，深受各大时尚品牌喜爱的帅气主持人ANDY陈正飞与享誉国际时装周的超模李振更连袂出席，表示支持TRENDIANO第一次举办的媒体活动，为现场带来了另一波高潮。</p><p>京城八大国际男模为大家展演4大系列共32套精彩服装，分别「花漾骑士」、「经典重现」、「男孩俱乐部」以及「信仰巴洛克」，完美诠释了当季男装中「轻奢华实穿主义」的概念。</p>			<a id="inline4" style="cursor:pointer"><img src="css/images/TrendyGlobal/movie.png">&nbsp;&nbsp;观看视频</a>
-									</div>
-								</div>		
-								</div>
-							</div>
-						</div>
-						<div class="showcase-thumbnail">
-							<img src="img/52483312ea688.jpg" alt="01" width="180px"/>
-							<div class="showcase-thumbnail-cover"></div>
-						</div>
-					</div>
-					<div class="showcase-slide">
-						<div style="background-image: url('img/5249105b6cd88.png');background-size:cover;" class="showcase-content">
-							<div class="showcase-content-wrapper">
-								<div class="center-div">
-								<div class="orbit-pictures">
-									<div id="featured2">
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-									</div>
-								</div>
-								<div id="text">
-									<h3>2013 TRENDIANO秋冬预览会</h3>
-									<div id="text-panel" class="scroll-pane"><p><strong>2013年8月</strong></p><p>TRENDIANO于品牌三周年成立之际在北京时尚名所D-LOUNGE举行「 化繁为简巴洛克 」2013年秋冬预览会。</p><p>本次预览以mini show的形式吸引了60多家媒体与时尚界重量级人士到场，此外，深受各大时尚品牌喜爱的帅气主持人ANDY陈正飞与享誉国际时装周的超模李振更连袂出席，表示支持TRENDIANO第一次举办的媒体活动，为现场带来了另一波高潮。</p><p>京城八大国际男模为大家展演4大系列共32套精彩服装，分别「花漾骑士」、「经典重现」、「男孩俱乐部」以及「信仰巴洛克」，完美诠释了当季男装中「轻奢华实穿主义」的概念。</p>			<a id="inline5" style="cursor:pointer"><img src="css/images/TrendyGlobal/movie.png">&nbsp;&nbsp;观看视频</a>
-									</div>
-								</div>			
-								</div>
-							</div>
-						</div>
-						<div class="showcase-thumbnail">
-							<img src="img/52483312ea688.jpg" alt="01" width="180px"/>
-							<div class="showcase-thumbnail-cover"></div>
-						</div>
-					</div>
-					<div class="showcase-slide">
-						<div style="background-image: url('img/5249105b6cd88.png');background-size:cover;" class="showcase-content">
-							<div class="showcase-content-wrapper">
-								<div class="center-div">
-								<div class="orbit-pictures">
-									<div id="featured2">
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-									</div>
-								</div>
-								<div id="text">
-									<h3>2013 TRENDIANO秋冬预览会</h3>
-									<div id="text-panel" class="scroll-pane"><p><strong>2013年8月</strong></p><p>TRENDIANO于品牌三周年成立之际在北京时尚名所D-LOUNGE举行「 化繁为简巴洛克 」2013年秋冬预览会。</p><p>本次预览以mini show的形式吸引了60多家媒体与时尚界重量级人士到场，此外，深受各大时尚品牌喜爱的帅气主持人ANDY陈正飞与享誉国际时装周的超模李振更连袂出席，表示支持TRENDIANO第一次举办的媒体活动，为现场带来了另一波高潮。</p><p>京城八大国际男模为大家展演4大系列共32套精彩服装，分别「花漾骑士」、「经典重现」、「男孩俱乐部」以及「信仰巴洛克」，完美诠释了当季男装中「轻奢华实穿主义」的概念。</p>			<a id="inline6" style="cursor:pointer"><img src="css/images/TrendyGlobal/movie.png">&nbsp;&nbsp;观看视频</a>
-									</div>
-								</div>		
-								</div>
-							</div>
-						</div>
-						<div class="showcase-thumbnail">
-							<img src="img/52483312ea688.jpg" alt="01" width="180px"/>
-							<div class="showcase-thumbnail-cover"></div>
-						</div>
-					</div>
-					<div class="showcase-slide">
-						<div style="background-image: url('img/5249105b6cd88.png');background-size:cover;" class="showcase-content">
-							<div class="showcase-content-wrapper">
-								<div class="center-div">
-								<div class="orbit-pictures">
-									<div id="featured2">
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-									</div>
-								</div>
-								<div id="text">
-									<h3>2013 TRENDIANO秋冬预览会</h3>
-									<div id="text-panel" class="scroll-pane"><p><strong>2013年8月</strong></p><p>TRENDIANO于品牌三周年成立之际在北京时尚名所D-LOUNGE举行「 化繁为简巴洛克 」2013年秋冬预览会。</p><p>本次预览以mini show的形式吸引了60多家媒体与时尚界重量级人士到场，此外，深受各大时尚品牌喜爱的帅气主持人ANDY陈正飞与享誉国际时装周的超模李振更连袂出席，表示支持TRENDIANO第一次举办的媒体活动，为现场带来了另一波高潮。</p><p>京城八大国际男模为大家展演4大系列共32套精彩服装，分别「花漾骑士」、「经典重现」、「男孩俱乐部」以及「信仰巴洛克」，完美诠释了当季男装中「轻奢华实穿主义」的概念。</p>			<a id="inline7" style="cursor:pointer"><img src="css/images/TrendyGlobal/movie.png">&nbsp;&nbsp;观看视频</a>
-									</div>	
-								</div>
-								</div>
-							</div>
-						</div>
-						<div class="showcase-thumbnail">
-							<img src="img/52483312ea688.jpg" alt="01" width="180px"/>
-							<div class="showcase-thumbnail-cover"></div>
-						</div>
-					</div>
-					<div class="showcase-slide">
-						<div style="background-image: url('img/552b2cbe0165c.jpg');background-size:cover;" class="showcase-content">
-							<div class="showcase-content-wrapper">
-								<div class="center-div">
-								<div class="orbit-pictures">
-									<div id="featured2">
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-										<img src="img/52483312ea688.jpg" width="545" height="363" />
-									</div>
-								</div>
-								<div id="text">
-									<h3>2013 TRENDIANO秋冬预览会</h3>
-									<div id="text-panel" class="scroll-pane"><p><strong>2013年8月</strong></p><p>TRENDIANO于品牌三周年成立之际在北京时尚名所D-LOUNGE举行「 化繁为简巴洛克 」2013年秋冬预览会。</p><p>本次预览以mini show的形式吸引了60多家媒体与时尚界重量级人士到场，此外，深受各大时尚品牌喜爱的帅气主持人ANDY陈正飞与享誉国际时装周的超模李振更连袂出席，表示支持TRENDIANO第一次举办的媒体活动，为现场带来了另一波高潮。</p><p>京城八大国际男模为大家展演4大系列共32套精彩服装，分别「花漾骑士」、「经典重现」、「男孩俱乐部」以及「信仰巴洛克」，完美诠释了当季男装中「轻奢华实穿主义」的概念。</p>		
-									<a id="inline8" style="cursor:pointer"><img src="css/images/TrendyGlobal/movie.png">&nbsp;&nbsp;观看视频</a>
-									</div>
-												
-								</div>
-								</div>
-							</div>
-						</div>
-						<div class="showcase-thumbnail">
-							<img src="img/52483312ea688.jpg" alt="01" width="180px"/>
-							<div class="showcase-thumbnail-cover"></div>
-						</div>
-					</div>
+					<!--load in js-->
 				</div>
 			</div>
 		<div id="foot">&nbsp;<a href="http://weibo.com/trendiano" target="_blank">品牌微博&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://trendiano.tmall.com/" target="_blank">官方购物网&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://www.trendy-global.com/" target="_blank">联系我们&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://www.trendy-global.com/" target="_blank">赫基官方网站&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://vip.trendy-global.com/" target="_blank">会员俱乐部&nbsp;&nbsp;</a>&nbsp;&nbsp;</div>
