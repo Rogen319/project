@@ -9,7 +9,6 @@ body{
 #main-content{
 	display: block; 
 	overflow: hidden;
-	height: 600px;
 	background-image:url(../img/media_bg.jpg);
 	background-size: cover;
 }

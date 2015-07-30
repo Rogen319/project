@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>海林集团 影视合作</title>
+	<title>影视合作</title>
 	<script type="text/javascript" src="js/lib/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.aw-showcase.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.carouFredSel-6.1.0.js"></script>
@@ -174,8 +174,9 @@
 			var orbitHtml = "";
 			var textHtml = "";
 			var thumbnailHtml = "";
+			var width = screen.width * 0.98;
 			for(var i = 0; i < slideCount ; i++){
-				showcaseInnerHtml=showcaseInnerHtml+"<div class=\"showcase-slide\"><div style=\"background-image: url('"+artData[i]['background']+"');background-size:cover;\" class=\"showcase-content\"><div class=\"showcase-content-wrapper\"><div class=\"center-div\">";
+				showcaseInnerHtml=showcaseInnerHtml+"<div class=\"showcase-slide\"><div id=\" showcase-content\"style=\" width:" + width + ";background-image: url('"+artData[i]['background'] + "');background-size:cover;" + +"height:" + resizeDiv(artData[i]['background']) + ";\" class=\"showcase-content\"><div class=\"showcase-content-wrapper\"><div class=\"center-div\">";
 				
 				thumbnailHtml = "<div class=\"showcase-thumbnail\">"
 								+"<img src=\""+artData[i]['thumbnail']+"\" width=\"180px\"/>"
@@ -204,6 +205,25 @@
 			}
 			return showcaseInnerHtml;
 		}
+	
+		function resizeDiv(backgroundImage) {
+		var height;
+　　		var img_src = backgroundImage
+　　　　		.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+　
+　　		// 创建新图像
+　　		var img = new Image();
+　　		// 图像加载
+　　		img.onload = function() {
+　　　　		// 获取宽高比
+　　　　		var ratio = img.width / img.height;
+　　　　		// 根据比例设置 div 高度
+　　　　		height = parseInt(screen.width * 0.98 / ratio) + "px";
+　　　　		img = null;
+　　		};
+　　		img.src = img_src;
+		return height;
+	};
 	</script>
 <style type="text/css" id="page-css">
 	.scroll-pane { width: 330px; overflow: auto; outline: none; }

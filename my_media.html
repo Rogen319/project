@@ -10,6 +10,9 @@
 	<link rel="stylesheet" type="text/css" href="css/my_media.css" />
           <script type="text/javascript">
           $(function(){ 
+		  	  var div = document.getElementById("all");
+			  div.style.width = screen.width * 0.98 + "px";
+			  resizeDiv();
 	  		  $(".media-left").html(loadLeftHtml());
 			  $(".media").html(loadMediaHtml());
 			  $(".media").append("<a class=\"prev\" id=\"media_prev\" href=\"#\"><span>prev</span></a> <a class=\"next\" id=\"media_next\" href=\"#\"><span>next</span></a>");
@@ -22,7 +25,7 @@
                       $(this).removeClass("menu_head_open");
                       $(this).next("div.menu_body").hide();
                   });
-              $("#year2014").click();
+              $("#firstpane>:first").click();
   
               $("#firstpane a,div.media-img a").click(function(e){
                   window.top.location.hash = $(this).attr('href');
@@ -61,7 +64,8 @@
 			  result += " <div class=\"media-nav-all\"> ALL </div>";
 			  result += "<div id=\"firstpane\" class=\"menu_list\">";
 			  for(var i = 0; i < menuLen ; i++){
-				  result += "<p class=\"menu_head\" id=\"year2014\">";
+				  result += "<p class=\"menu_head\" id=\"";
+				  result += "year"+leftMenu[i]['year']+"\">";
 				  result += leftMenu[i]['year'];
 				  result += "年</p>";
 				  result += "<div class=\"menu_body\">";
@@ -94,6 +98,28 @@
 			  result += "</div>";
 			  return result;
 		  }
+		  
+		  function resizeDiv() {
+　　		// 获取 div 元素
+　　		var div = document.getElementById("main-content");
+　　		// 兼容 style
+　		var style = div.currentStyle || getComputedStyle(div, false);
+　		// 从 url("/path/to/image.jpg") 中获取图像地址
+　　		var img_src = style.backgroundImage
+　　　　		.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+　
+　　		// 创建新图像
+　　		var img = new Image();
+　　		// 图像加载
+　　		img.onload = function() {
+　　　　		// 获取宽高比
+　　　　		var ratio = img.width / img.height;
+　　　　		// 根据比例设置 div 高度
+　　　　		div.style.height = parseInt(div.offsetWidth / ratio) + "px";
+　　　　		img = null;
+　　		};
+　　		img.src = img_src;
+	};
       </script>
 </head>
 

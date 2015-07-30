@@ -1,0 +1,36 @@
+@charset "utf-8";
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background: url(images/bgimage.png) repeat-x;
+	background-color: #9aa2a5;
+	font-family:Helvetica,"微软雅黑",Arial,sans-serif;
+}
+
+#main-content{
+	display: block; 
+	overflow: hidden;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 40px;
+	background-image:url(../img/star.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+}
+
+/*cn.html*/
+#all { width: 100%; margin: 0; padding: 0;}
+#party-all {
+	display: block;
+	background-color: #000;
+	height: 100%;
+}
+/*foot*/
+#foot { font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #fff; line-height: 30px; display: block; float: left; }
+#foot a { font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #fff; line-height: 30px; text-decoration: none; }
+#foot a:hover { font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #231f20; line-height: 30px; text-decoration: none; }
+/*copyright*/
+#copyright {font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #fff; line-height: 20px; float: right; text-align: right; }
+#copyright a { font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #fff; line-height: 20px; text-decoration: none; }
+#copyright a:hover { font-family: Helvetica,"微软雅黑",Arial,sans-serif; font-size: 12px; color: #231f20; line-height: 20px; text-decoration: none; }

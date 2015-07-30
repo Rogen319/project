@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>明星 & 街拍</title>
+	<link rel="stylesheet" type="text/css" href="css/star.css" />
+</head>
+<script type="text/javascript">
+	function resizeDiv() {
+　　		// 获取 div 元素
+　　		var div = document.getElementById("main-content");
+　　		// 兼容 style
+　		var style = div.currentStyle || getComputedStyle(div, false);
+　		// 从 url("/path/to/image.jpg") 中获取图像地址
+　　		var img_src = style.backgroundImage
+　　　　		.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+　
+　　		// 创建新图像
+　　		var img = new Image();
+　　		// 图像加载
+　　		img.onload = function() {
+　　　　		// 获取宽高比
+　　　　		var ratio = img.width / img.height;
+　　　　		// 根据比例设置 div 高度
+　　　　		div.style.height = parseInt(div.offsetWidth / ratio) + "px";
+　　　　		img = null;
+　　		};
+　　		img.src = img_src;
+	};
+　
+	// 页面加载，设置 div 高度
+	window.onload = function() {
+		var div = document.getElementById("all");
+		div.style.width = screen.width * 0.98 + "px";
+　　		resizeDiv();
+	};
+　
+</script>
+
+<body>
+	<div id="all">
+			<div id="main-content">
+            <div id="party-all" style="height:100%;background:transparent;">
+				<a href="http://v.youku.com/v_show/id_XNTk5MTg4Nzg4.html" title="明星&街拍" target="_blank" style="display:block;height:100%;width:100%;"></a>
+			</div>   
+            </div>
+            <div id="foot">&nbsp;<a href="http://weibo.com/trendiano" target="_blank">品牌微博&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://trendiano.tmall.com/" target="_blank">官方购物网&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://www.trendy-global.com/" target="_blank">联系我们&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://www.trendy-global.com/" target="_blank">赫基官方网站&nbsp;&nbsp;</a>|&nbsp;&nbsp;<a href="http://vip.trendy-global.com/" target="_blank">会员俱乐部&nbsp;&nbsp;</a>&nbsp;&nbsp;</div>
+
+			<div id="copyright">Copyright @ 2013 Trendy International Group All Rights Reserved&nbsp;&nbsp;<br /><a href="http://www.miibeian.gov.cn/" target="_blank">备案号：粤ICP备11010295&nbsp;&nbsp;</a> </div>
+	</div>
+	</div>
+
+</div>
+</body>
+</html>
