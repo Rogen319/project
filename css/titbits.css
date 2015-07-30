@@ -16,9 +16,10 @@ body{
 	margin-bottom: 30px;
 }
 .center-div{
-	width:50%;
-	padding-top: 50px;
-	margin-left:10%;
+	padding-top: 150px;
+	margin-left:15%;
+	position:relative;
+	overflow:hidden;
 }
 .orbit-wrapper{
 	margin: 0 auto;
@@ -82,9 +83,10 @@ div.showcase-tooltip { background-color: #fff; color: #000; text-align: left; pa
 /* Clear (used for horizontal thumbnails)
 -------------------------------------------*/
 .clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; float: none; }
-#showcase div#text {width:100% !important;margin-top: 10px;  height:150px; overflow: hidden; color: #fff; text-decoration: none; font-size: 12px;text-align: left;color: #fff;line-height: 20px;letter-spacing: 1px;}
-#text h3 { font-size: 17px; text-align: left; line-height: 25px; height: 35px; margin: 0; padding: 0; }
-#text a { color: #fff; text-decoration: none; font-size: 12px; text-align: left;display:inline-block;margin-top:15px;}
+#showcase div#text {z-index:3;position:absolute;left:0;bottom:-318px;background: rgba(0,0,0,0.5);width:100% !important;margin-top: 10px;  height:150px; overflow: hidden; color: #fff; text-decoration: none; font-size: 12px;text-align: left;color: #fff;line-height: 20px;letter-spacing: 1px;}
+#text h3 { font-size: 17px; text-align: left; line-height: 25px; height: 35px; margin: 0; padding: 0; margin-left: 10px;margin-top: 10px;}
+#text p{padding: 0 10px;}
+#text a { color: #fff; text-decoration: none; font-size: 12px; text-align: left;display:inline-block;margin-top:15px;padding: 0 10px;}
 #text .scroll-pane a {margin: 0;}
 #text .scroll-pane a:hover {text-decoration: underline;}
 #text a img { border: none;}

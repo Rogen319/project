@@ -28,6 +28,8 @@
 	  			location.reload();
 			});
 	  		$("#showcase").html(loadHtml());
+
+
 	  		$("#showcase").awShowcase(
 	  		{
 	  			content_width:      $(window).width(),
@@ -66,6 +68,12 @@
 	  				var slideCount = titbitData.length;
 	  				for(var i = 0; i < slideCount ; i++){
 	  					$('#'+titbitData[i]['orbit']['id']).orbit();
+	  					console.log(titbitData[i]['orbit']['id']);
+	  					$('#'+titbitData[i]['orbit']['id']).parent().parent().next().hover(function(){
+							$(this).stop().animate({bottom: 0});
+						},function(){
+							$(this).stop().animate({bottom: -318});
+						});
 	  					$('#'+titbitData[i]['video']['id']).click(function(){});
 	  					$("a#"+titbitData[i]['video']['id']).fancybox({
 		  					'content':'<div id=\"video\" data-index=\"'+i+'\"></div>',
@@ -113,7 +121,6 @@
 	  				}
 				}
 			});
-
 			$("a#"+titbitData[0]['video']['id']).fancybox({
 				'content':'<div id="video"></div>',
 				'hideOnContentClick': false,
@@ -170,7 +177,7 @@
 			var textHtml = "";
 			var thumbnailHtml = "";
 			for(var i = 0; i < slideCount ; i++){
-				showcaseInnerHtml=showcaseInnerHtml+"<div class=\"showcase-slide\"><div style=\"background-image: url('"+titbitData[i]['background']+"');background-size:cover;\" class=\"showcase-content\"><div class=\"showcase-content-wrapper\"><div class=\"center-div\">";
+				showcaseInnerHtml=showcaseInnerHtml+"<div class=\"showcase-slide\"><div style=\"background-image: url('"+titbitData[i]['background']+"');background-size:cover;\" class=\"showcase-content\"><div class=\"showcase-content-wrapper\"><div class=\"center-div\" style=\"width:"+titbitData[i]['orbit']['images'][0]['width']+"px;height:"+titbitData[i]['orbit']['images'][0]['height']+"px;\">";
 				
 				thumbnailHtml = "<div class=\"showcase-thumbnail\">"
 								+"<img src=\""+titbitData[i]['thumbnail']+"\" width=\"230px\"/>"
@@ -180,7 +187,8 @@
 				var imgCount = titbitData[i]['orbit']['images'].length;
 				var pCount = titbitData[i]['text']['p'].length;
 
-				textHtml = "<div id=\"text\" class=\"scroll-pane\"><h3>"+titbitData[i]['text']['title']+"</h3><div id=\"text-panel\">"
+				textHtml = "<div id=\"text\" class=\"scroll-pane\" style=\"width:"+titbitData[i]['orbit']['images'][0]['width']+"px;height:"+titbitData[i]['orbit']['images'][0]['height']+"px;\">"
+						 +"<h3>"+titbitData[i]['text']['title']+"</h3><div id=\"text-panel\">"
 						 + "<p></p><p><strong>"+titbitData[i]['text']['date']+"</strong></p><a id=\""+titbitData[i]['video']['id']+"\" style=\"cursor:pointer;margin:0;\"><img src=\"css/images/TrendyGlobal/movie.png\">&nbsp;&nbsp;观看视频</a>";
 				for(var k = 0; k < pCount; k++){
 					textHtml = textHtml + "<p>"+ titbitData[i]['text']['p'][k] +"</p>";
@@ -209,6 +217,7 @@
 		$('.scroll-pane').jScrollPane();
 	});
 </script>
+	
 </head>
 <body>
 	<div id="all">
@@ -222,5 +231,15 @@
 
 		<div id="copyright">Copyright @ 2013 Trendy International Group All Rights Reserved&nbsp;&nbsp;<br /><a href="http://www.miibeian.gov.cn/" target="_blank">备案号：粤ICP备11010295&nbsp;&nbsp;</a> </div>
 	</div>
+	<script>
+	window.onload= function(){
+		$('#'+titbitData[0]['orbit']['id']).parent().parent().next().hover(function(){
+			$(this).stop().animate({bottom: 0});
+		},function(){
+			$(this).stop().animate({bottom: -318});
+		});
+	};
+	
+	</script>
 </body>
 </html>
